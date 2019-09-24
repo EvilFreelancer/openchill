@@ -11,10 +11,13 @@ class Config
         'namespace' => 'OpenChillClient',
         'author'    => 'OpenChill PHP Codegen',
         'type'      => 'library',
-        'output'    => __DIR__ . '/../client/',
+        'output'    => __DIR__ . '/../output/',
+        'version'   => '0.0.1',
     ];
 
     /**
+     * List of allowed parameters
+     *
      * @var array
      */
     public $allowed = [
@@ -22,16 +25,20 @@ class Config
         'type',
         'license',
         'author',
+        'version',
         'namespace',
         'input',
-        'output'
+        'output',
     ];
 
     /**
+     * Default structure of output project
+     *
      * @var array
      */
     public $structure = [
         'f|composer.json',
+        'f|phpunit.xml',
         'd|src' => [
             'd|Models',
             'd|Endpoints',
@@ -42,6 +49,8 @@ class Config
     ];
 
     /**
+     * Convert full class name to path on filesystem
+     *
      * @param string $class
      * @return string
      */
@@ -51,6 +60,8 @@ class Config
     }
 
     /**
+     * Extract directory from path of file
+     *
      * @param string $class
      * @return string
      */
