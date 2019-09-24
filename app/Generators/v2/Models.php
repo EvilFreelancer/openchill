@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenChill\Generators;
+namespace OpenChill\Generators\Swagger;
 
 use gossi\codegen\generator\builder\FunctionBuilder;
 use gossi\codegen\generator\CodeFileGenerator;

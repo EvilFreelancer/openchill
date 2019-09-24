@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenChill\Generators;
+namespace OpenChill\Generators\Swagger;
 
 use gossi\codegen\model\PhpProperty;
 
@@ -69,6 +69,9 @@ class Property
     }
 
     /**
+     * Convert @ref line to model name
+     * eg. "$ref": "#/definitions/MatchingSlotsSearchParameters" to "MatchingSlotsSearchParameters"
+     *
      * @param string $ref
      * @return string
      */
