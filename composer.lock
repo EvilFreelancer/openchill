@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "522277f442b5d6762cba9a028f7ae9c0",
+    "content-hash": "87de9fa6d0e56e6bcacbaec9b68de4e8",
     "packages": [
+        {
+            "name": "evilfreelancer/composer-json-generator",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EvilFreelancer/composer-json-generator.git",
+                "reference": "c54bf987a064a06435cca85072ae8f7be77094a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EvilFreelancer/composer-json-generator/zipball/c54bf987a064a06435cca85072ae8f7be77094a3",
+                "reference": "c54bf987a064a06435cca85072ae8f7be77094a3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ComposerJson\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Rock",
+                    "email": "paul@drteam.rocks",
+                    "homepage": "https://twitter.com/EvilFreelancer",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Small library for generating composer.json file with validation by composer's schema",
+            "keywords": [
+                "composer",
+                "generator",
+                "json"
+            ],
+            "time": "2019-09-24T18:25:11+00:00"
+        },
         {
             "name": "gossi/docblock",
             "version": "v1.6",
