@@ -2,7 +2,9 @@
 
 namespace OpenChill;
 
-use OpenChill\Generators\Models;
+use ComposerJson\Schemas\Composer;
+use OpenChill\Generators\ComposerJson;
+use OpenChill\Generators\v2\Models;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,6 +47,7 @@ class Cli
      * Check if file is YAML
      *
      * @param string $source
+     *
      * @return bool
      */
     public function isYaml(string &$source): bool
@@ -63,6 +66,7 @@ class Cli
      * Check if file is YAML
      *
      * @param string $source
+     *
      * @return bool
      */
     public function isJson(string &$source): bool
@@ -118,8 +122,35 @@ class Cli
                     throw new \InvalidArgumentException('Incorrect format of file');
                 }
 
-                // Parse models
-                $models = Models::factory($this->config, $this->content);
+                /*
+                 * Read version of OpenAPI, then select factory for work
+                 */
+
+                if (!empty($this->content['swagger']) && $this->content['swagger'] === '2.0') {
+                    $model = \OpenChill\Generators\v2\Models::class;
+                } elseif (!empty($this->content['openapi']) && $this->content['openapi'] === '3.0.0') {
+                    $model = \OpenChill\Generators\v3\Models::class;
+                } else {
+                    throw new \ErrorException('Version of provided specification is not supported');
+                }
+
+                /*
+                 * Generate composer.json
+                 */
+
+                // Write composer.json file
+                ComposerJson::factory($this->config);
+
+                /*
+                 * Generate models
+                 */
+
+                // Parse and write models
+                $model::factory($this->config, $this->content);
+
+                /*
+                 * Generate endpoints
+                 */
 
                 $io->success('Done');
 
@@ -128,13 +159,6 @@ class Cli
             ->run();
     }
 
-    // Read version of swagger of openapi
-
-    // Select factory for work
-
-    // Read "definitions" for models
-
-    // Generate models
 
     // Read endpoints for classes
 
