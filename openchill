@@ -1,13 +1,11 @@
+#!/usr/bin/env php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Symfony\Component\Console\Application;
-use OpenChill\Commands\Parse;
+use OpenChill\Config;
+use OpenChill\Cli;
 
-$application = new Application();
+$config = new Config();
+$cli    = new Cli($config);
 
-$application->addCommands([
-    new Parse(),
-]);
-
-$application->run();
+$cli->run();
